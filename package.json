@@ -23,7 +23,7 @@
     "storage"
   ],
   "author": "Mehdi Asadli",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/preset-env": "^7.19.1",
     "@types/jest": "^29.0.3",
