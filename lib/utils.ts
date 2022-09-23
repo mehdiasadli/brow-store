@@ -1,13 +1,21 @@
-export const setLocal = (key: string, value: any) => {
-  localStorage.setItem(key, JSON.stringify(value))
-};
+import { encrypt, decrypt } from "./cryp"
 
-export const getLocal = (key: string, defaultValue: any = null): any => {
+type isEncrpyted = [ boolean, string ]
+
+export const setLocal = (key: string, value: any, enc: isEncrpyted = [ false, '' ]) => {
+  enc[0]
+    ? localStorage.setItem(key, encrypt(JSON.stringify(value), enc[1]))
+    : localStorage.setItem(key, JSON.stringify(value))
+}
+
+export const getLocal = (key: string, defaultValue = null, enc: isEncrpyted = [ false, '' ]): any => {
   const result = localStorage.getItem(key)
   if (!result) return defaultValue
 
-  return JSON.parse(result)
-};
+  return enc[0]
+    ? JSON.parse(decrypt(result, enc[1]))
+    : JSON.parse(result)
+}
 
 export const removeLocal = (key: string) => {
     localStorage.removeItem(key)
