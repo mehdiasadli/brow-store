@@ -34,14 +34,14 @@ export const getLocalKey = (index: number, defaultValue: any = null, log = false
     return result
 }
 
-export const getLocalValue = (index: number, defaultKey: any = null, log = false) => {
+export const getLocalValue = (index: number, defaultKey: any = null, log = false, enc: isEncrpyted = [ false, '' ]) => {
     const key = getLocalKey(index)
     if(!key) {
         if(log) console.log('VALUE: ', defaultKey)
         return defaultKey
     }
 
-    const result = getLocal(key)
+    const result = getLocal(key, null, enc)
 
     if (log) console.log('VALUE: ', result)
     return result
